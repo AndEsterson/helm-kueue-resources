@@ -1,17 +1,20 @@
 apiVersion: kueue.x-k8s.io/v1beta1
 kind: ClusterQueue
 metadata:
-  name: "cluster-queue"
+  name: "free-tier-queue"
 spec:
   namespaceSelector: {}
+  cohort:
   resourceGroups:
-  - coveredResources: ["cpu", "memory", "pods"]
+  - coveredResources: ["cpu", "memory", "nvidia.com/gpu", "pods"]
     flavors:
     - name: "default-flavor"
       resources:
       - name: "cpu"
-        nominalQuota: 9
+        nominalQuota: 60
       - name: "memory"
-        nominalQuota: 36Gi
+        nominalQuota: 200Gi
+      - name: "nvidia.com/gpu"
+        nominalQuota: 4
       - name: "pods"
-        nominalQuota: 5
+        nominalQuota: 400
