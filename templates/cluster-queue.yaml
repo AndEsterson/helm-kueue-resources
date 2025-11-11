@@ -4,7 +4,7 @@ metadata:
   name: "free-tier-queue"
 spec:
   namespaceSelector: {}
-  cohort:
+  cohort: "user-queues"
   resourceGroups:
   - coveredResources: ["cpu", "memory", "nvidia.com/gpu", "pods"]
     flavors:
