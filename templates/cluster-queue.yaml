@@ -1,20 +1,24 @@
+{{- range $queueName, $queue := .Values.spec.clusterQueues -}}
 apiVersion: kueue.x-k8s.io/v1beta1
 kind: ClusterQueue
 metadata:
-  name: "free-tier-queue"
+  name: {{ $queueName }}
 spec:
-  namespaceSelector: {}
-  cohort: "user-queues"
+  namespaceSelector:
+    matchLabels:
+      unified-ai.arc.ucl.ac.uk/{{ $queue.name }}-kueue-access
+  cohort: {{ $queue.cohort }}
   resourceGroups:
   - coveredResources: ["cpu", "memory", "nvidia.com/gpu", "pods"]
     flavors:
     - name: "default-flavor"
       resources:
       - name: "cpu"
-        nominalQuota: 60
+        nominalQuota: {{ $queue.resourceQuota.cpu }}
       - name: "memory"
-        nominalQuota: 200Gi
+        nominalQuota: {{ $queue.resourceQuota.memory }}
       - name: "nvidia.com/gpu"
-        nominalQuota: 4
+        nominalQuota: {{ $queue.resourceQuota.gpu }}
       - name: "pods"
-        nominalQuota: 400
+        nominalQuota: {{ $queue.resourceQuota.pods }}
+{{- end }}
