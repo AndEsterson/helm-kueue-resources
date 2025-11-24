@@ -7,7 +7,6 @@ spec:
   namespaceSelector:
     matchLabels:
       unified-ai.arc.ucl.ac.uk/kubeflow-profile-type: "default"
-  cohort: {{ $queue.cohort }}
   resourceGroups:
   - coveredResources: ["cpu", "memory", "nvidia.com/gpu", "pods"]
     flavors:
