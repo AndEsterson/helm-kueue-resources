@@ -21,4 +21,5 @@ spec:
         nominalQuota: {{ $queue.resourceQuota.gpu }}
       - name: "pods"
         nominalQuota: {{ $queue.resourceQuota.pods }}
+---
 {{- end }}
