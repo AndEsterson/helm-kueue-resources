@@ -20,5 +20,7 @@ spec:
         nominalQuota: {{ $queue.resourceQuota.gpu }}
       - name: "pods"
         nominalQuota: {{ $queue.resourceQuota.pods }}
+      - name: "ephemeral-storage"
+        nominalQuota: {{ $queue.resourceQuota.ephemeralStorage }}
 ---
 {{- end }}
