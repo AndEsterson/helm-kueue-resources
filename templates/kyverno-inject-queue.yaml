@@ -1,0 +1,24 @@
+{{- range $userName, $user := .Values.spec.users -}}
+{{- range $queueAccessName, $queueAccess := $user.queueAccesses -}}
+{{ if eq $queueAccess.default true }}
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: add-default-kueue-queue
+spec:
+  background: true
+  rules:
+    - name: add-queue-label
+      match:
+        resources:
+          kinds:
+            - Pod
+      mutate:
+        patchStrategicMerge:
+          metadata:
+            labels:
+              +(kueue.x-k8s.io/queue-name): {{ $queueAccessName }}
+---
+{{- end }}
+{{- end }}
+{{- end }}

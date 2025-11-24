@@ -1,12 +1,12 @@
 {{- range $userName, $user := .Values.spec.users -}}
-{{- range $queueAccess := $user.queueAccesses -}}
+{{- range $queueAccessName, $queueAccess := $user.queueAccesses -}}
 apiVersion: kueue.x-k8s.io/v1beta1
 kind: LocalQueue
 metadata:
-  name: {{ $queueAccess }}
+  name: {{ $queueAccessName }}
   namespace: kubeflow-{{ $userName }}
 spec:
-  clusterQueue: {{ $queueAccess }}
+  clusterQueue: {{ $queueAccessName }}
 ---
 {{- end }}
 {{- end }}
