@@ -2,9 +2,10 @@
 {{- range $queueAccessName, $queueAccess := $user.queueAccesses -}}
 {{ if eq $queueAccess.default true }}
 apiVersion: kyverno.io/v1
-kind: ClusterPolicy
+kind: Policy
 metadata:
   name: add-default-kueue-queue
+  namespace: kubeflow-{{ $userName }}
 spec:
   background: true
   rules:
