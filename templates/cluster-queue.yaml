@@ -6,7 +6,7 @@ metadata:
 spec:
   namespaceSelector:
     matchLabels:
-      unified-ai.arc.ucl.ac.uk/{{ $queue.name }}-kueue-access
+      unified-ai.arc.ucl.ac.uk/kubeflow-profile-type: "default"
   cohort: {{ $queue.cohort }}
   resourceGroups:
   - coveredResources: ["cpu", "memory", "nvidia.com/gpu", "pods"]
