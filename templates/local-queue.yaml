@@ -8,5 +8,15 @@ metadata:
 spec:
   clusterQueue: {{ $queueAccessName }}
 ---
+{{ if eq $queueAccess.default true }}
+apiVersion: kueue.x-k8s.io/v1beta1
+kind: LocalQueue
+metadata:
+  name: default
+  namespace: kubeflow-{{ $userName }}
+spec:
+  clusterQueue: {{ $queueAccessName }}
+---
+{{- end }}
 {{- end }}
 {{- end }}
