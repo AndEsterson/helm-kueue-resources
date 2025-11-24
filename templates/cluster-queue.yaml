@@ -8,7 +8,7 @@ spec:
     matchLabels:
       unified-ai.arc.ucl.ac.uk/kubeflow-profile-type: "default"
   resourceGroups:
-  - coveredResources: ["cpu", "memory", "nvidia.com/gpu", "pods"]
+  - coveredResources: ["cpu", "memory", "nvidia.com/gpu", "pods", "ephemeral-storage"]
     flavors:
     - name: "default-flavor"
       resources:
