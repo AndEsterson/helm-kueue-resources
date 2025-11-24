@@ -10,6 +10,7 @@ spec:
   background: true
   rules:
     - name: add-queue-label
+      skipBackgroundRequests: false
       match:
         resources:
           kinds:
